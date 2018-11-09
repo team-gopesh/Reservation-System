@@ -1,0 +1,106 @@
+/* ====== 初期設定 ======= */
+.wrap{
+  /*width: 960px;*/
+  margin:0 auto;
+}
+
+/*header{
+  width: 960px;
+}*/
+
+#contents{
+  /*width: 960px;*/
+  height: 1000px;
+  margin: 10px 0px 10px 0px;
+  padding-top: 0px;  /* 効いていない？ */
+}
+
+/*footer{
+  width: 960px;
+}*/
+
+/* レイアウト確認用の点線表示 */
+header, #contents, footer{
+  border: dashed 1px #999;
+}
+
+/* ====== コンテンツ ======= */
+
+/* === イベント内容表示 === */
+/* イベント内容大枠 */
+.box_event{
+  width: 1000px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;   /* 効いていない？ */
+  background-color: rgba(0, 252, 0);
+}
+
+/* イベント内容各行の設定 */
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9{
+  display: block;
+  width: auto;
+  height: 50px;
+  margin: 5px;
+  background-color: red;
+}
+
+/* イベント内容全ボックス共通設定 */
+.box11, .box12, .box21, .box22, .box31, .box32, .box41, .box42, .box51, .box52,
+.box61, .box62, .box71, .box72, .box81, .box82, .box91, .box92{
+  display: inline;
+  font-size: 18px;
+  padding: 5px;
+  margin: 5px
+}
+
+/* 項目ボックスのみの設定 */
+.box11, .box21, .box31, .box41, .box51, .box61, .box71, .box81, .box91{
+  width: 20%;
+  color: white;
+  background-color: blue;
+}
+
+/* 内容ボックスのみの設定 */
+.box12, .box22, .box32, .box42, .box52, .box62, .box72, .box82, .box92{
+  width: 80%;
+  overflow: hidden;
+  background-color: rgb(170, 208, 206);
+}
+
+/* === 参加者入力フォーム === */
+/* 参加者入力フォーム大枠 */
+.box_participant{
+  width: 1100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 252, 0);
+}
+
+/* 入力フォーム全ボックス共通設定 */
+.index_name, .content_name, .index_mail, .content_mail{
+  font-size: 18px;
+  padding: 5px;
+  margin: 5px
+}
+
+/* 項目ボックスの設定 */
+.index_name, .index_mail{
+  float: left;
+  clear: left;
+  width: 20%;
+  color: white;
+  background-color: blue;
+}
+
+/* 入力フォームの設定 */
+.content_name, .content_mail{
+  float: left;
+  width: 70%;
+  overflow: hidden;
+  background-color: rgb(170, 208, 206);
+}
