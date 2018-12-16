@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>イベント告知掲示板</title>
+    <link rel="stylesheet" href="page2_tatehata_1120.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-logo">イベント告知掲示板</div>
+
+      <div class="header-logo2">～代表者様送信フォーム～</div>
+    </div>
+    <div class="main">
+
+      <!-- テスト用：入力フォームから送信ボタンまで<form>タグで囲む -->
+      <!-- 送信ボタンを押すと、formタグ内のフォーム内容を保存用のページに送信 -->
+      <!-- 全てのinputにnameを定義 -->
+      <form action="save_to_mysql.php" method="post">
+
+         <div class="contents-item">
+           <p>タイトル <span>※必須 </span></p>
+           <input name='title'>
+         </div>
+
+         <div class="contents-item">
+           <p>日時 <span>※必須 </span></p>
+           <input name='date'>
+         </div>
+
+         <div class="contents-item">
+           <p>種目 <span>※必須 </span></p>
+           <input name='kind'>
+         </div>
+
+         <div class="contents-item">
+           <p>募集人数 <span>※必須 </span></p>
+           <input name='invite_people'>
+         </div>
+
+         <div class="contents-item">
+           <p>最低人数 <span>※必須 </span></p>
+           <input name='least_people'>
+         </div>
+
+         <div class="contents-item">
+           <p>現在人数 <span>※必須 </span></p>
+           <input name='now_people'>
+         </div>
+
+         <div class="contents-item">
+           <p>募集期限 <span>※必須 </span></p>
+           <input name='deadline'>
+         </div>
+
+         <div class="contents-item">
+           <p>代表者 <span>※必須 </span></p>
+           <input name='representative'>
+         </div>
+
+         <div class="contents-item">
+           <p>連絡先 <span>※必須 </span></p>
+           <input name='email'>
+         </div>
+
+         <div class="contents-item">
+           <p>コメント</p>
+           <textarea name='comment'></textarea>
+         </div>
+
+
+        <p><span>※</span> 必須項目は必ずご入力ください</p>
+
+        <input class="contact-submit" type="submit" value="送信">
+      </form>
+
+      </div>
+
+    <div class="footer">
+      <div class="footer-logo">イベント告知掲示板</div>
+      <div class="footer-list">
+        <ul>
+          <li><a href="">←戻る</a></li>
+          <li><a href="">ホーム画面へ</a></li>
+          <li><a href="">お問い合わせ</a></li>
+
+          <!-- テスト用のリンク -->
+          <li><a href="P2_Osugi.php">大杉担当ページへ</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
