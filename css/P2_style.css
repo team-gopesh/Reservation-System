@@ -1,0 +1,147 @@
+/* ====== 初期設定 ======= */
+.wrap{
+  /*width: 960px;*/
+  margin:0 auto;
+}
+
+header{
+  background-color: #26d0c9;
+  color: #fff;
+  height: 90px;
+}
+
+.header-logo{
+  float: left;
+  font-size: 36px;
+  padding: 20px 40px;
+}
+
+#contents{
+  /*width: 960px;*/
+  height: auto;
+  margin: 10px 0px 10px 0px;
+}
+
+/*footer{
+  width: 960px;
+}*/
+
+/* レイアウト確認用の点線表示 */
+#contents, footer{
+  border: dashed 1px #999;
+}
+
+/* ====== コンテンツ ======= */
+
+/* === イベント内容表示 === */
+/* イベント内容大枠 */
+.box_event{
+  width: 1000px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  background-color: rgba(0, 252, 0);
+}
+
+/* イベント内容見出し */
+.box0{
+  font-size: 20px;
+}
+
+/* 各行ボックスの設定 */
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9{
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 5px;
+  padding: 5px;   /* 確認用、完成版では消しとく */
+  background-color: red;
+  font-size: 0;   /* これをつけなければ子要素のinline-blockに変な隙間ができる */
+}
+
+/* 全ボックス共通設定 */
+.box11, .box12, .box21, .box22, .box31, .box32, .box41, .box42, .box51, .box52,
+.box61, .box62, .box71, .box72, .box81, .box82, .box91, .box92{
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+}
+
+/* 項目ボックスのみの設定 */
+:root{  /* 変数定義 */
+  --margin-itembox: 20px;  /* 各ボックス間のmargin */
+  --rate-item: 0.12;  /* 内容boxの幅に対して、項目boxの幅が占める割合 */
+}
+.box11, .box21, .box31, .box41, .box51, .box61, .box71, .box81, .box91{
+  width: calc((100% - var(--margin-itembox)) * var(--rate-item));
+  vertical-align: top;
+  margin-right: var(--margin-itembox);  /* 内容ボックスの文字数が多く改行された時は上寄せ */
+  color: white;
+  background-color: blue;
+}
+
+/* 内容ボックスのみの設定 */
+.box12, .box22, .box32, .box42, .box52, .box62, .box72, .box82, .box92{
+  width: calc((100% - var(--margin-itembox)) * (1 - var(--rate-item)));
+  background-color: rgb(170, 208, 206);
+}
+
+
+/* === 参加者入力フォーム === */
+/* 参加者入力フォーム大枠 */
+.box_participant{
+  width: 900px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  background-color: rgba(0, 252, 0);
+}
+
+/* 入力フォーム見出し */
+.box0_{
+  font-size: 20px;
+}
+
+/* 各行ボックスの設定 */
+.box1_, .box2_{
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 5px;
+  padding: 5px;   /* 確認用、完成版では消しとく */
+  background-color: red;
+  font-size: 0;   /* これをつけなければ子要素のinline-blockに変な隙間ができる */
+}
+
+/* 全ボックス共通設定 */
+.index_name, .content_name, .index_mail, .content_mail{
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 18px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+}
+
+/* 項目ボックスの設定 */
+:root{  /* 変数定義 */
+  --margin-itembox2: 20px;  /* 各ボックス間のmargin */
+  --rate-item2: 0.15;  /* 内容boxの幅に対して、項目boxの幅が占める割合 */
+}
+.index_name, .index_mail{
+  width: calc((100% - var(--margin-itembox2)) * var(--rate-item2));
+  margin-right: var(--margin-itembox2);
+  color: white;
+  background-color: blue;
+}
+
+/* 入力フォームの設定 */
+.content_name, .content_mail{
+  width: calc((100% - var(--margin-itembox2)) * (1 - var(--rate-item2)));
+  background-color: rgb(170, 208, 206);
+}
