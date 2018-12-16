@@ -4,9 +4,17 @@
   margin:0 auto;
 }
 
-/*header{
-  width: 960px;
-}*/
+header{
+  background-color: #26d0c9;
+  color: #fff;
+  height: 90px;
+}
+
+.header-logo{
+  float: left;
+  font-size: 36px;
+  padding: 20px 40px;
+}
 
 #contents{
   /*width: 960px;*/
@@ -19,7 +27,7 @@
 }*/
 
 /* レイアウト確認用の点線表示 */
-header, #contents, footer{
+#contents, footer{
   border: dashed 1px #999;
 }
 
