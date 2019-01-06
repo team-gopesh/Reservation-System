@@ -17,42 +17,15 @@
 
       <!-- MySQLからイベント情報の取得 -->
       <?php
-      // MySQLへの接続
-      $link = mysql_connect('localhost', 'user_reserve', 'gopesh');
-      if (!$link){
-        die('MySQLへの接続に失敗しました。'.mysql_error());
-      }
-
-      //データベースの選択
-      $db_selected = mysql_select_db('reservation_system', $link);
-      if(!$db_selected){
-        die('データベースの選択に失敗しました。'.mysql_error());
-      }
+      // データベースを取得するライブラリのインポート
+      require "./lib/MySQL_event_lib.php";
 
       // データの取得
       $get_id = 1;   // 取得するレコードのidを選択
-      $sql = sprintf('select * from event where id = %d', $get_id);
-      $event_information = mysql_query($sql);
-      while($row = mysql_fetch_assoc($event_information)){
-        $get_title = $row['title'];
-        $get_date = $row['date'];
-        $get_kind = $row['kind'];
-        $get_invite_people = $row['invite_people'];
-        $get_least_people = $row['least_people'];
-        $get_now_people = $row['now_people'];
-        $get_deadline = $row['deadline'];
-        $get_representative = $row['representative'];
-        $get_email = $row['email'];
-      }
+      $event_array = getDatabase_from_id($get_id);
 
       // テスト用に、データベースの全情報を取得
-      $all_data = mysql_query('select * from event');
-
-      //MySQLからの切断
-      $close_flag = mysql_close($link);
-      if(!$close_flag){
-        print('<p>切断に失敗しました。</p>');
-      }
+      $all_data = getDatabase_from_SQL('select * from event');
       ?>
 
       <!-- イベント情報の表示 -->
@@ -62,35 +35,35 @@
         </div>
         <div class="box1">
           <div class="box11">タイトル</div>
-          <div class="box12"><?php echo $get_title; ?></div>
+          <div class="box12"><?php echo $event_array[$get_id]["title"]; ?></div>
         </div>
         <div class="box2">
           <div class="box21">日時</div>
-          <div class="box22"><?php echo $get_date; ?></div>
+          <div class="box22"><?php echo $event_array[$get_id]["date"]; ?></div>
         </div>
         <div class="box3">
           <div class="box31">種目</div>
-          <div class="box32"><?php echo $get_kind; ?></div>
+          <div class="box32"><?php echo $event_array[$get_id]["kind"]; ?></div>
         </div>
         <div class="box4">
           <div class="box41">募集人数</div>
-          <div class="box42"><?php echo $get_invite_people; ?>人</div>
+          <div class="box42"><?php echo $event_array[$get_id]["invite_people"]; ?>人</div>
         </div>
         <div class="box5">
           <div class="box51">現在の人数</div>
-          <div class="box52"><?php echo $get_now_people; ?>人</div>
+          <div class="box52"><?php echo $event_array[$get_id]["now_people"]; ?>人</div>
         </div>
         <div class="box6">
           <div class="box61">期限</div>
-          <div class="box62"><?php echo $get_deadline; ?></div>
+          <div class="box62"><?php echo $event_array[$get_id]["deadline"]; ?></div>
         </div>
         <div class="box7">
           <div class="box71">代表者</div>
-          <div class="box72"><?php echo $get_representative; ?></div>
+          <div class="box72"><?php echo $event_array[$get_id]["representative"]; ?></div>
         </div>
         <div class="box8">
           <div class="box81">連絡先</div>
-          <div class="box82"><?php echo $get_email; ?></div>
+          <div class="box82"><?php echo $event_array[$get_id]["email"]; ?></div>
         </div>
         <div class="box9">
           <div class="box91">コメント</div>
@@ -126,17 +99,17 @@
       <!-- テスト用にデータベースの全情報を表示 -->
       <p>テスト用に「selelct * from event」で表示されるeventテーブルの情報を表示</p>
       <?php
-      while($row = mysql_fetch_assoc($all_data)){
-        echo $row['id'].' | ';
-        echo $row['title'].' | ';
-        echo $row['date'].' | ';
-        echo $row['kind'].' | ';
-        echo $row['invite_people'].' | ';
-        echo $row['least_people'].' | ';
-        echo $row['now_people'].' | ';
-        echo $row['deadline'].' | ';
-        echo $row['representative'].' | ';
-        echo $row['email'].'<br/>';
+      foreach ($all_data as $id => $event){
+        echo $id . ' | ';
+        echo $event['title'].' | ';
+        echo $event['date'].' | ';
+        echo $event['kind'].' | ';
+        echo $event['invite_people'].' | ';
+        echo $event['least_people'].' | ';
+        echo $event['now_people'].' | ';
+        echo $event['deadline'].' | ';
+        echo $event['representative'].' | ';
+        echo $event['email'].'<br/>';
       }
       ?>
 
