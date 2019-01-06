@@ -100,24 +100,31 @@
 
       <!-- 希望者用入力フォーム -->
       <div class="box_participant">
-        <div class="box0_">
-          入力フォーム
-        </div>
-        <div class="box1_">
-          <div class="index_name">名前</div>
-          <div class="content_name">
-            <input type="text" name="" value="">
+        <form action="send_mail.php" method="post">
+          <div class="box0_">
+            入力フォーム
           </div>
-        </div>
-        <div class="box2_">
-          <div class="index_mail">メールアドレス</div>
-          <div class="content_mail">
-            <input type="text" name="" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          <div class="box1_">
+            <div class="index_name">名前</div>
+            <div class="content_name">
+              <input type="text" name="name">
+            </div>
           </div>
-        </div>
+          <div class="box2_">
+            <div class="index_mail">メールアドレス</div>
+            <div class="content_mail">
+              <input type="text" name="to" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            </div>
+          </div>
+
+          <!-- 送信ボタン -->
+          <input type="text" name="password" value="password">
+          <input class="button_submit" type="submit" value="送信">
+        </form>
       </div>
 
       <!-- テスト用にデータベースの全情報を表示 -->
+      <p>テスト用に「selelct * from event」で表示されるeventテーブルの情報を表示</p>
       <?php
       while($row = mysql_fetch_assoc($all_data)){
         echo $row['id'].' | ';
