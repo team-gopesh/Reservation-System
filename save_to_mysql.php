@@ -63,17 +63,9 @@
         return $value;
       }
 
-      // MySQLへの接続
-      $link = mysql_connect('localhost', 'user_reserve', 'gopesh');
-      if (!$link){
-        die('MySQLへの接続に失敗しました。'.mysql_error());
-      }
-
-      //データベースの選択
-      $db_selected = mysql_select_db('reservation_system', $link);
-      if(!$db_selected){
-        die('データベースの選択に失敗しました。'.mysql_error());
-      }
+      // MySQLの準備
+      require "./lib/MySQL_event_lib.php";
+      $link = start_MySQL();
 
       // 現在登録されているレコードのidの最大値を取得
       $id_current = mysql_query('select id from event order by id desc limit 1');
@@ -115,10 +107,7 @@
       }
 
       //MySQLからの切断
-      $close_flag = mysql_close($link);
-      if(!$close_flag){
-        print('<p>切断に失敗しました。</p>');
-      }
+      quit_MySQL($link);
 
       // 保存確認ページにリダイレクト
       header('Location: check_save.php');
