@@ -46,11 +46,12 @@
     $is_deadline = ($_POST['deadline'] != '');
     $is_representative = ($_POST['representative'] != '');
     $is_email = ($_POST['email'] != '');
+    $is_comment = ($_POST['comment'] != '');
 
     // 必要事項全てに記入されていれかの判定
     $is_filled = ($is_title and $is_date and $is_kind
       and $is_invite_people and $is_least_people and $is_now_people
-      and $is_deadline and $is_representative and $is_email
+      and $is_deadline and $is_representative and $is_email and $is_comment
     );
 
     // 入力フォームに必要事項が全て入力されていたときの処理
@@ -91,14 +92,15 @@
       $add_deadline = quote_smart($_POST['deadline']);
       $add_representative = quote_smart($_POST['representative']);
       $add_email = quote_smart($_POST['email']);
+      $add_comment = quote_smart($_POST['comment']);
 
       //INSERTするためのSQL文を作成
       $sql = sprintf("insert into event (
           id, title, date, kind, invite_people, least_people,
-          now_people, deadline, representative, email
-        ) values (%d, %s, %d, %s, %d, %d, %d, %d, %s, %s)",
+          now_people, deadline, representative, email, comment
+        ) values (%d, %s, %d, %s, %d, %d, %d, %d, %s, %s, %s)",
         $add_id, $add_title, $add_date, $add_kind, $add_invite_people, $add_least_people,
-        $add_now_people, $add_deadline, $add_representative, $add_email
+        $add_now_people, $add_deadline, $add_representative, $add_email, $add_comment
       );
       // データベースへ保存
       $result_save = mysql_query($sql);

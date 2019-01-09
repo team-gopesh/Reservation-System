@@ -67,7 +67,7 @@
         </div>
         <div class="box9">
           <div class="box91">コメント</div>
-          <div class="box92">あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</div>
+          <div class="box92"><?php echo $event_array[$get_id]["comment"]; ?></div>
         </div>
       </div>
 
@@ -109,7 +109,8 @@
         echo $event['now_people'].' | ';
         echo $event['deadline'].' | ';
         echo $event['representative'].' | ';
-        echo $event['email'].'<br/>';
+        echo $event['email'].' | ';
+        echo $event['comment'].'<br/>';
       }
       ?>
 

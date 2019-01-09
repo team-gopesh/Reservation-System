@@ -55,6 +55,7 @@ function eventData_to_array($data){
       "deadline" => $row['deadline'],
       "representative" => $row['representative'],
       "email" => $row['email'],
+      "comment" => $row['comment']
     );
   }
   return $data_array;
