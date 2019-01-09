@@ -17,12 +17,36 @@
 
       <!-- MySQLからイベント情報の取得 -->
       <?php
-      // データベースを取得するライブラリのインポート
+      // MySQLの準備
       require "./lib/MySQL_event_lib.php";
 
-      // データの取得
-      $get_id = 1;   // 取得するレコードのidを選択
-      $event_array = getDatabase_from_id($get_id);
+      // 現在登録されているレコードのidの最大値を取得
+      $link = start_MySQL();
+      $id_current = mysql_query('select id from event order by id desc limit 1');
+      if(!$id_current){
+        die('現在登録されているidの取得に失敗しました。'.mysql_error());
+      }
+      while($row = mysql_fetch_assoc($id_current)){
+        if ($row == ''){   // データベースが空の場合
+          $id_last = 0;
+        } else {
+          $id_last = $row['id'];
+        }
+      }
+      quit_MySQL($link);
+
+      // 前ページで入力したデータを格納
+      $add_id = $id_last + 1;
+      $add_title = $_POST['title'];
+      $add_date = $_POST['date'];
+      $add_kind = $_POST['kind'];
+      $add_invite_people = $_POST['invite_people'];
+      $add_least_people = $_POST['least_people'];
+      $add_now_people = $_POST['now_people'];
+      $add_deadline = $_POST['deadline'];
+      $add_representative = $_POST['representative'];
+      $add_email = $_POST['email'];
+      $add_comment = $_POST['comment'];
 
       // テスト用に、データベースの全情報を取得
       $all_data = getDatabase_from_SQL('select * from event');
@@ -35,45 +59,45 @@
         </div>
         <div class="box1">
           <div class="box11">タイトル</div>
-          <div class="box12"><?php echo $event_array[$get_id]["title"]; ?></div>
+          <div class="box12"><?php echo $add_title; ?></div>
         </div>
         <div class="box2">
           <div class="box21">日時</div>
-          <div class="box22"><?php echo $event_array[$get_id]["date"]; ?></div>
+          <div class="box22"><?php echo $add_date; ?></div>
         </div>
         <div class="box3">
           <div class="box31">種目</div>
-          <div class="box32"><?php echo $event_array[$get_id]["kind"]; ?></div>
+          <div class="box32"><?php echo $add_kind; ?></div>
         </div>
         <div class="box4">
           <div class="box41">募集人数</div>
-          <div class="box42"><?php echo $event_array[$get_id]["invite_people"]; ?>人</div>
+          <div class="box42"><?php echo $add_invite_people; ?>人</div>
         </div>
         <div class="box5">
           <div class="box51">現在の人数</div>
-          <div class="box52"><?php echo $event_array[$get_id]["now_people"]; ?>人</div>
+          <div class="box52"><?php echo $add_now_people; ?>人</div>
         </div>
         <div class="box6">
           <div class="box61">期限</div>
-          <div class="box62"><?php echo $event_array[$get_id]["deadline"]; ?></div>
+          <div class="box62"><?php echo $add_deadline; ?></div>
         </div>
         <div class="box7">
           <div class="box71">代表者</div>
-          <div class="box72"><?php echo $event_array[$get_id]["representative"]; ?></div>
+          <div class="box72"><?php echo $add_representative; ?></div>
         </div>
         <div class="box8">
           <div class="box81">連絡先</div>
-          <div class="box82"><?php echo $event_array[$get_id]["email"]; ?></div>
+          <div class="box82"><?php echo $add_email; ?></div>
         </div>
         <div class="box9">
           <div class="box91">コメント</div>
-          <div class="box92"><?php echo $event_array[$get_id]["comment"]; ?></div>
+          <div class="box92"><?php echo $add_comment; ?></div>
         </div>
       </div>
 
       <!-- 希望者用入力フォーム -->
       <div class="box_participant">
-        <form action="send_mail.php" method="post">
+        <form action="save_and_mail.php" method="post">
           <div class="box0_">
             入力フォーム
           </div>
@@ -89,6 +113,19 @@
               <input type="text" name="to" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
             </div>
           </div>
+
+          <!-- 前ページから渡された変数を隠しデータに格納($_POSTで渡すため) -->
+          <input type="hidden" name="id" value=<?php echo $add_id; ?>>
+          <input type="hidden" name="title" value=<?php echo $add_title; ?>>
+          <input type="hidden" name="date" value=<?php echo $add_date; ?>>
+          <input type="hidden" name="kind" value=<?php echo $add_kind; ?>>
+          <input type="hidden" name="invite_people" value=<?php echo $add_invite_people; ?>>
+          <input type="hidden" name="least_people" value=<?php echo $add_least_people; ?>>
+          <input type="hidden" name="now_people" value=<?php echo $add_now_people; ?>>
+          <input type="hidden" name="deadline" value=<?php echo $add_deadline; ?>>
+          <input type="hidden" name="representative" value=<?php echo $add_representative; ?>>
+          <input type="hidden" name="email" value=<?php echo $add_email; ?>>
+          <input type="hidden" name="comment" value=<?php echo $add_comment; ?>>
 
           <!-- 送信ボタン -->
           <input type="text" name="password" value="password">

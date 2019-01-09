@@ -16,7 +16,7 @@
       <!-- テスト用：入力フォームから送信ボタンまで<form>タグで囲む -->
       <!-- 送信ボタンを押すと、formタグ内のフォーム内容を保存用のページに送信 -->
       <!-- 全てのinputにnameを定義 -->
-      <form action="save_to_mysql.php" method="post">
+      <form action="P2_Osugi.php" method="post">
 
          <div class="contents-item">
            <p>タイトル <span>※必須 </span></p>
@@ -70,7 +70,6 @@
 
 
         <p><span>※</span> 必須項目は必ずご入力ください</p>
-
         <input class="contact-submit" type="submit" value="送信">
       </form>
 
@@ -83,10 +82,6 @@
           <li><a href="">←戻る</a></li>
           <li><a href="">ホーム画面へ</a></li>
           <li><a href="">お問い合わせ</a></li>
-
-          <!-- テスト用のリンク -->
-          <li><a href="P2_Osugi.php">大杉担当ページへ</a></li>
-
         </ul>
       </div>
     </div>
