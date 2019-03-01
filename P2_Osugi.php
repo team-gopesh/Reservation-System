@@ -121,7 +121,7 @@
       <h2>フッター</h2>
 
       <!-- テスト用のリンク -->
-      <a href="page2_tatehata_1120.php">建畠担当ページへ</a>
+      <a href="page2_tatehata.html">建畠担当ページへ</a>
 
     </footer>
   </div>
