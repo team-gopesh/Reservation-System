@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>ページ２</title>
-    <link rel="stylesheet" type="text/css" href="css/P2_style.css">
+    <link rel="stylesheet" type="text/css" href="css/P2_Osugi_style.css">
   </head>
   <div id="wrap">
     <!-- ======= ヘッダー ======= -->
