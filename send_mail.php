@@ -16,24 +16,38 @@
     require_once("Mail.php");
 
     // 変数の格納
-    $name = $_POST['name'];   // ここから参加者情報
-    $to = $_POST['to'];
-    $password = $_POST['password'];
-    $title = $_POST['title'];   // ここからイベントおよび代表者情報
+    // イベントおよび代表者情報
+    $id = $_POST['id'];
+    $title = $_POST['title'];
     $date = $_POST['date'];
     $kind = $_POST['kind'];
     $invite_people = $_POST['invite_people'];
     $least_people = $_POST['least_people'];
-    $now_people = $_POST['now_people'];
+    $now_people = $_POST['now_people'] + 1;  // この参加者の分を増やしておく
     $deadline = $_POST['deadline'];
     $representative = $_POST['representative'];
     $email = $_POST['email'];
     $comment = $_POST['comment'];
+    // ここから参加者情報
+    $name = $_POST['name'];
+    $to = $_POST['to'];
+    $password = $_POST['password'];
 
     // 日程に関する情報から年月日を取り出す
     require "./lib/util.php";
     list($date_year, $date_month, $date_date) = get_date($date);
     list($deadline_year, $deadline_month, $deadline_date) = get_date($deadline);
+
+    // 更新された現在の人数をデータベースに保存
+    require "./lib/MySQL_event_lib.php";
+    $link = start_MySQL();  // MySQLの開始
+    $sql = sprintf("update event set now_people = %d where id = %d",
+                    $now_people, $id);  //INSERTするためのSQL文を作成
+    $result = mysql_query($sql);  // データベースの変更
+    if(!$result){
+      die('UPDATEクエリーが失敗しました。'.mysql_error());
+    }
+    quit_MySQL($link);
 
     // GmailのSMTPサーバの情報を連想配列にセット
     $params = array(
@@ -65,7 +79,7 @@
                 . "・種目：　" . $kind . "\n"
                 . "・募集人数：　" . $invite_people . "人\n"
                 . "・最低人数：　" . $least_people . "人\n"
-                . "・現在の人数：　" . $now_people . "\n"
+                . "・現在の人数：　" . $now_people . "人\n"
                 . "・期限：　" . $deadline_year . "年" . $deadline_month . "月" . $deadline_date . "日\n"
                 . "・代表者：　" . $representative . "\n"
                 . "・代表者連絡先：　" . $email . "\n"
@@ -78,7 +92,8 @@
                 . "ご質問がありましたら、このメールに返信をください。\n\n"
                 . "----------------------\n"
                 . "京都大学イベント予約システム（個人運営）\n"
-                . "メールアドレス： gopesh.test1@gmail.com";
+                . "メールアドレス： gopesh.test1@gmail.com\n"
+                . "----------------------";
 
     // 日本語なのでエンコード
     $content = mb_convert_encoding($content, "ISO-2022-JP", "UTF-8");

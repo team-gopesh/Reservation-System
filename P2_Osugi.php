@@ -95,6 +95,7 @@
           </div>
 
           <!-- イベントデータを隠しデータとして送信する -->
+          <input type="hidden" name="id" value=<?php echo $get_id; ?>>
           <input type="hidden" name="title" value=<?php echo $event_array[$get_id]["title"]; ?>>
           <input type="hidden" name="date" value=<?php echo $event_array[$get_id]["date"]; ?>>
           <input type="hidden" name="kind" value=<?php echo $event_array[$get_id]["kind"]; ?>>
