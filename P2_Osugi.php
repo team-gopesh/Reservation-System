@@ -49,6 +49,10 @@
           <div class="box41">募集人数</div>
           <div class="box42"><?php echo $event_array[$get_id]["invite_people"]; ?>人</div>
         </div>
+        <div class="box4_5">
+          <div class="box4_51">最低人数</div>
+          <div class="box4_52"><?php echo $event_array[$get_id]["least_people"]; ?>人</div>
+        </div>
         <div class="box5">
           <div class="box51">現在の人数</div>
           <div class="box52"><?php echo $event_array[$get_id]["now_people"]; ?>人</div>
@@ -89,6 +93,18 @@
               <input type="text" name="to" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="adress">
             </div>
           </div>
+
+          <!-- イベントデータを隠しデータとして送信する -->
+          <input type="hidden" name="title" value=<?php echo $event_array[$get_id]["title"]; ?>>
+          <input type="hidden" name="date" value=<?php echo $event_array[$get_id]["date"]; ?>>
+          <input type="hidden" name="kind" value=<?php echo $event_array[$get_id]["kind"]; ?>>
+          <input type="hidden" name="invite_people" value=<?php echo $event_array[$get_id]["invite_people"]; ?>>
+          <input type="hidden" name="least_people" value=<?php echo $event_array[$get_id]["least_people"]; ?>>
+          <input type="hidden" name="now_people" value=<?php echo $event_array[$get_id]["now_people"]; ?>>
+          <input type="hidden" name="deadline" value=<?php echo $event_array[$get_id]["deadline"]; ?>>
+          <input type="hidden" name="representative" value=<?php echo $event_array[$get_id]["representative"]; ?>>
+          <input type="hidden" name="email" value=<?php echo $event_array[$get_id]["email"]; ?>>
+          <input type="hidden" name="comment" value=<?php echo $event_array[$get_id]["comment"]; ?>>
 
           <!-- 送信ボタン -->
           <input type="text" name="password" value="password", id="password">
