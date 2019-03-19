@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="css/nakatomi.css">
   </head>
   <body>
+    <?php require('MySQL_event_lib.php'); ?>
     <?php
       $year = date('Y');
       $month = date('n');
       $last_day = date('j', mktime(0,0,0, $month + 1, 0, $year));
       $calendar = array();
-      echo $month;
       $j = 0;
       //
       for ($i = 1;$i < $last_day + 1; $i++){
@@ -33,6 +33,10 @@
         }
       }
     ?>
+	<?php 
+	  $event_array = array();
+	  $event_array = getDatabase_from_date($year,$month); 
+	?> 
     <br>
     <form action="nakatomi.php" method="get">
       <input type="text" name="select_month"><br>
@@ -56,6 +60,13 @@
           <td>
             <?php $cnt++; ?>
             <?php echo $value['day']; ?>
+			<br>
+			<?php 
+			  if($event_array['date'] == $value['day']){
+			  	  echo $event_array['kind'];
+			  }
+			?>
+			<br>
           </td>
         <?php if($cnt == 7): ?>
       </tr>
