@@ -31,7 +31,6 @@
     // ここから参加者情報
     $name = $_POST['name'];
     $to = $_POST['to'];
-    $password = $_POST['password'];
 
     // 日程に関する情報から年月日を取り出す
     require "./lib/util.php";
@@ -45,7 +44,19 @@
                     $now_people, $id);  //INSERTするためのSQL文を作成
     $result = mysql_query($sql);  // データベースの変更
     if(!$result){
-      die('UPDATEクエリーが失敗しました。'.mysql_error());
+      die('現在の人数の更新に失敗。'.mysql_error());
+    }
+
+    // gmailのgopeshアカウントのパスワードを取得
+    $sql = sprintf("select * from gopesh_password");
+    $password_data = mysql_query($sql);
+    if(!$password_data){
+      die('gopeshアカウントのパスワード取得に失敗。'.mysql_error());
+    }
+    while($row = mysql_fetch_assoc($password_data)){
+      if ($row["id"] == 1){
+        $password = $row["password"];
+      }
     }
     quit_MySQL($link);
 

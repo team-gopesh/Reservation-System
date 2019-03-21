@@ -108,28 +108,21 @@
           <input type="hidden" name="comment" value=<?php echo $event_array[$get_id]["comment"]; ?>>
 
           <!-- 送信ボタン -->
-          <input type="text" name="password" value="password", id="password">
           <input class="button_submit" type="submit" value="送信", onclick="return submit_check()">
 
           <script>
             var submit_check = function(){
               var name = document.getElementById("name").value;
               var adress = document.getElementById("adress").value;
-              var password = document.getElementById("password").value;
-              if (password != "gpstest1"){   // パスワードが正しくないときの処理
-                alert("パスワードが間違えています。");
+              if (name == "") {        // 名前が書かれていないとき
+                alert("名前が記入されていません。");
                 return false;
-              } else {                       // パスワードが正しいときの処理
-                if (name == "") {                  // 名前が書かれていないとき
-                  alert("名前が記入されていません。");
+              } else {
+                if (adress == ""){    // メールアドレスが書かれていないとき
+                  alert("メールアドレスが記入されていません。");
                   return false;
-                } else {
-                  if (adress == ""){    // メールアドレスが書かれていないとき
-                    alert("メールアドレスが記入されていません。");
-                    return false;
-                  } else {   // 入力事項が適切アラートを出してメール送信するか確認する
-                    return window.confirm("代表者にメールを送信します。よろしいですか？");
-                  }
+                } else {   // 入力事項が適切アラートを出してメール送信するか確認する
+                  return window.confirm("代表者にメールを送信します。よろしいですか？");
                 }
               }
             }
