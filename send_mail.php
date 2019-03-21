@@ -63,7 +63,7 @@
 
     // メールヘッダ情報を連想配列としてセット
     $headers = array(
-      "To" => $to,  // →ここで指定したアドレスには送信されない
+      "To" => $email,  // →ここで指定したアドレスには送信されない
       "From" => "gopesh.test1@gmail.com",
       "Subject" => mb_encode_mimeheader('イベント作成の連絡') // 日本語の件名を指定する場合、mb_encode_mimeheaderでエンコード
     );
@@ -73,7 +73,7 @@
                 . "京都大学イベント予約システムです。\n"
                 . $representative . " 様が作成したイベントに、新たな参加者が来ましたのでご連絡します。\n\n"
                 . "++++++++++++++++++++++\n"
-                . "イベント情報\n"
+                . "イベント内容\n"
                 . "・タイトル：　" . $title . "\n"
                 . "・日時：　" . $date_year . "年" . $date_month . "月" . $date_date . "日\n"
                 . "・種目：　" . $kind . "\n"
@@ -89,7 +89,7 @@
                 . "・連絡先：　" . $to . "\n"
                 . "++++++++++++++++++++++\n\n"
                 . "参加者と連絡を取り合って、集合場所などを決めてください。\n"
-                . "ご質問がありましたら、このメールに返信をください。\n\n"
+                . "ご質問等がございましたら、このメールに返信をください。\n\n"
                 . "----------------------\n"
                 . "京都大学イベント予約システム（個人運営）\n"
                 . "メールアドレス： gopesh.test1@gmail.com\n"
@@ -99,7 +99,7 @@
     $content = mb_convert_encoding($content, "ISO-2022-JP", "UTF-8");
 
     // sendメソッドでメールを送信
-    $mailObject->send($to, $headers, $content);
+    $mailObject->send($email, $headers, $content);
 
     echo '送信完了';
     ?>
